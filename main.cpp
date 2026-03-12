@@ -8,6 +8,8 @@
 #include "helpers.h"
 #include "search/binary_search.h"
 #include "search/binary_search_recursively.h"
+#include "rod_cutting.cpp"
+#include "sorting/bucket_sort.h"
 using namespace std;
 #define stack_array_size 100
 
@@ -19,7 +21,12 @@ void demoBinarySearch() {
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    demoBinarySearch();
+    //demoBinarySearch();
+    //int arr[] = {1, 2, 3}; // Example input array (replace with your actual array)
+    //int rod_length = sizeof(arr) / sizeof(arr[0]);
+
+    //rod_cutting(arr, rod_length);
+    bucketSortDemo();
     // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
     //int arr[stack_array_size];
     //generateRandomInts(arr, stack_array_size, 0, 100);
