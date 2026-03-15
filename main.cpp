@@ -8,16 +8,9 @@
 #include "helpers.h"
 #include "search/binary_search.h"
 #include "search/binary_search_recursively.h"
-#include "rod_cutting.cpp"
 #include "sorting/bucket_sort.h"
 using namespace std;
 #define stack_array_size 100
-
-void demoBinarySearch() {
-    int sorted_arr[] {1, 3, 5, 27, 29, 30 ,31, 32, 100};
-    int index_of_searched_number = binarySearchRecursively(sorted_arr, 100, 0, std::size(sorted_arr) - 1, std::size(sorted_arr));
-    cout << index_of_searched_number << endl;
-}
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {

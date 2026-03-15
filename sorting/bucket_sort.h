@@ -6,6 +6,7 @@
 #define BUCKET_SORT_H
 #include <iostream>
 #include <vector>
+#include "../helpers.h"
 using namespace std;
 
 // Insertion sort function to sort individual buckets
@@ -29,9 +30,13 @@ inline void bucketSort(float arr[], int n) {
     // 2) Put array elements in different buckets
     for (int i = 0; i < n; i++) {
         int bi = n * arr[i];
+        cout << n << " * " << arr[i] << " = " << bi << endl;
         b[bi].push_back(arr[i]);
     }
-
+    for (int i = 0; i < n; i++) {
+        cout << "Bucket " << i << ": ";
+        printVector(b[i]);
+    }
     // 3) Sort individual buckets using insertion sort
     for (int i = 0; i < n; i++) {
         insertionSort(b[i]);

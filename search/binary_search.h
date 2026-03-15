@@ -1,7 +1,6 @@
 //
 // Created by neo on 3/9/26.
 //
-
 #ifndef BINARY_SEARCH_H
 #define BINARY_SEARCH_H
 template <typename T>
@@ -18,4 +17,5 @@ int binarySearch(T arr[], T item, int low, int high) {
     }
     return low;
 }
+
 #endif //BINARY_SEARCH_H
