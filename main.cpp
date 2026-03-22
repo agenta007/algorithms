@@ -9,6 +9,10 @@
 #include "search/binary_search.h"
 #include "search/binary_search_recursively.h"
 #include "sorting/bucket_sort.h"
+#include "greedy/minimum_number_of_coins.h"
+#include "dp/zadacha1_dp.h"
+#include "greedy/fractional_knapsack.h"
+#include "greedy/min_cost.h"
 using namespace std;
 #define stack_array_size 100
 
@@ -19,7 +23,16 @@ int main() {
     //int rod_length = sizeof(arr) / sizeof(arr[0]);
 
     //rod_cutting(arr, rod_length);
-    bucketSortDemo();
+    //bucketSortDemo();
+    //vector<int> coins = {1, 2, 5, 10};
+    //printVector(coinChange(39, coins));
+    vector<int> val = {60, 100, 120};
+    vector<int> wt = {30, 20, 30};
+    int capacity = 50;
+    cout << fractionalKnapsack(val, wt, capacity) << endl;
+
+    //vector<int> a = { 4, 3, 2 };
+    //cout << minCost(a) << endl;
     // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
     //int arr[stack_array_size];
     //generateRandomInts(arr, stack_array_size, 0, 100);
