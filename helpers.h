@@ -22,6 +22,13 @@ void printVector(const T& vec) { // 1. Подаване чрез констан�
     std::cout << std::endl;
 }
 
+inline void printAdjacencyList(std::vector<std::vector<int>>& adj) {
+    for (auto& i : adj) {
+        cout << i[0] << " -> ";
+        printVector(i);
+    }
+}
+
 inline void printAdjacencyMatrix(std::vector<std::vector<int>> adj_matrix, int n, int m) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
@@ -45,6 +52,19 @@ inline void generateRandomInts(int arr[], int size, int min, int max) {
     }
     cout << "Generated: ";
     printArray(arr, size);
+}
+
+inline std::vector<std::vector<int>> randomTree(int n) {
+    std::vector<std::vector<int>> adj(n);
+    srand(time(0));
+
+    // Each node (1..n-1) picks a random parent from (0..i-1)
+    for (int i = 1; i < n; i++) {
+        int parent = rand() % i;
+        adj[parent].push_back(i);
+        adj[i].push_back(parent);  // remove for directed
+    }
+    return adj;
 }
 
 #endif //HELPERS_H
