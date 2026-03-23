@@ -1,7 +1,6 @@
 //
 // Created by neo on 3/22/26.
 //
-
 #ifndef ALGORITHMS_DIJKSTRA_H
 #define ALGORITHMS_DIJKSTRA_H
 
@@ -9,55 +8,96 @@
 #include <queue>
 #include <limits>
 #include <iostream>
+#include <tuple>
 
-const int INF = std::numeric_limits<int>::max();
+// Type aliases for readability
+using Edge = std::pair<int, int>; // {neighbor, weight}
+using NodeState = std::pair<int, int>; // {distance, vertex}
 
-// Dijkstra's shortest path from source s
-// adj[u] = list of {v, weight} pairs
-// Returns dist[] where dist[i] = shortest distance from s to i
-std::vector<int> dijkstra(const std::vector<std::vector<std::pair<int,int>>>& adj, int s) {
-    int n = adj.size();
-    std::vector<int> dist(n, INF);
-    // min-heap: {dist, vertex}
-    std::priority_queue<std::pair<int,int>, std::vector<std::pair<int,int>>,
-                        std::greater<std::pair<int,int>>> pq;
+const int INFINITY_DISTANCE = std::numeric_limits<int>::max();
 
-    dist[s] = 0;
-    pq.push({0, s});
+std::vector<int> dijkstra(const std::vector<std::vector<Edge>>& adjacency_list, int start_vertex) {
+    int num_vertices = adjacency_list.size();
 
-    while (!pq.empty()) {
-        auto [d, u] = pq.top();
-        pq.pop();
+    // Vector to store shortest distances from source
+    std::vector<int> distances(num_vertices, INFINITY_DISTANCE);
 
-        if (d > dist[u]) continue; // stale entry
+    // Min-heap priority queue storing {distance, vertex}
+    std::priority_queue<NodeState, std::vector<NodeState>, std::greater<NodeState>> min_heap;
 
-        for (auto [v, w] : adj[u]) {
-            if (dist[u] + w < dist[v]) {
-                dist[v] = dist[u] + w;
-                pq.push({dist[v], v});
+    std::cout << "=== Dijkstra Algorithm Started ===" << std::endl;
+    std::cout << "Start Vertex: " << start_vertex << std::endl;
+
+    // Initialize source vertex distance
+    distances[start_vertex] = 0;
+    min_heap.push({0, start_vertex});
+    std::cout << "Initialized distance of vertex " << start_vertex << " to 0" << std::endl;
+
+    while (!min_heap.empty()) {
+        // Extract the vertex with the minimum distance
+        auto [current_distance, current_vertex] = min_heap.top();
+        min_heap.pop();
+
+        std::cout << "\n--- Processing Vertex " << current_vertex << " (Distance: " << current_distance << ") ---" << std::endl;
+
+        // Skip stale entries
+        if (current_distance > distances[current_vertex]) {
+            std::cout << "Skipping stale entry for vertex " << current_vertex
+                      << " (Current best distance: " << distances[current_vertex] << ")" << std::endl;
+            continue;
+        }
+
+        // Iterate over neighbors
+        for (const auto& [neighbor_vertex, edge_weight] : adjacency_list[current_vertex]) {
+            std::cout << "Checking neighbor " << neighbor_vertex << " (Edge weight: " << edge_weight << ")";
+
+            int new_distance = distances[current_vertex] + edge_weight;
+
+            // Relaxation step
+            if (new_distance < distances[neighbor_vertex]) {
+                int old_distance = distances[neighbor_vertex];
+                distances[neighbor_vertex] = new_distance;
+                min_heap.push({new_distance, neighbor_vertex});
+
+                std::cout << " -> Updated distance: " << old_distance << " -> " << new_distance << std::endl;
+            } else {
+                std::cout << " -> No update (Current distance " << distances[neighbor_vertex] << " is better)" << std::endl;
             }
         }
     }
-    return dist;
+
+    std::cout << "\n=== Algorithm Finished ===" << std::endl;
+    return distances;
 }
 
-void demoDijkstra() {
-    int n = 5;
-    std::vector<std::vector<std::pair<int,int>>> adj(n);
-    // edges: u, v, weight
-    std::vector<std::tuple<int,int,int>> edges = {
-        {0,1,4},{0,2,1},{2,1,2},{1,3,1},{2,3,5},{3,4,3}
-    };
-    for (auto [u, v, w] : edges) {
-        adj[u].push_back({v, w});
-        adj[v].push_back({u, w});
-    }
+void runDijkstra(std::vector<std::tuple<int, int, int>>& adj_list, bool isDirected) {
+    int num_vertices = 5;
+    std::vector<std::vector<Edge>> adjacency_list(num_vertices);
 
-    std::vector<int> dist = dijkstra(adj, 0);
-    std::cout << "Dijkstra from 0: ";
-    for (int i = 0; i < n; ++i)
-        std::cout << "d[" << i << "]=" << dist[i] << " ";
-    std::cout << std::endl;
+    // Edge list: {u, v, weight}
+    std::cout << "Building Graph..." << std::endl;
+    if (isDirected) {
+        for (const auto& [u, v, weight] : adj_list) {
+            adjacency_list[u].push_back({v, weight});
+            //adjacency_list[v].push_back({u, weight});
+            std::cout << "Added edge: " << u << " -> " << v << " (Weight: " << weight << ")" << std::endl;
+        }
+    }
+    else {
+        for (const auto& [u, v, weight] : adj_list) {
+            adjacency_list[u].push_back({v, weight});
+            adjacency_list[v].push_back({u, weight});
+            std::cout << "Added edge: " << u << " -> " << v << " (Weight: " << weight << ")" << std::endl;
+        }
+    }
+    std::cout << "----------------------------" << std::endl;
+
+    std::vector<int> shortest_distances = dijkstra(adjacency_list, 0);
+
+    std::cout << "\nFinal Results:" << std::endl;
+    for (int i = 0; i < num_vertices; ++i) {
+        std::cout << "Shortest distance from 0 to " << i << ": " << shortest_distances[i] << std::endl;
+    }
 }
 
 #endif //ALGORITHMS_DIJKSTRA_H

@@ -37,27 +37,22 @@
 #include "graph/shortest_path_unweighted.h"
 #include "graph/dfs.h"
 #include "graph/dijkstra.h"
-#include "graph/kruskal.h"
 #include "graph/prim.h"
 #include "graph/undirected_cycle_detector.h"
 #include "graph/bfs_2.h"
 using namespace std;
 #define stack_array_size 100
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
+void demoSearchAlgorithms() {
     //demoBinarySearch();
     //int arr[] = {1, 2, 3}; // Example input array (replace with your actual array)
     //int rod_length = sizeof(arr) / sizeof(arr[0]);
     //rod_cutting(arr, rod_length);
     //bucketSortDemo();
-    //vector<int> coins = {1, 2, 5, 10};
+    //
     //printVector(coinChange(39, coins));
-    //vector<int> val = {60, 100, 120};
-    //vector<int> wt = {30, 20, 30};
     //int capacity = 50;
     //cout << fractionalKnapsack(val, wt, capacity) << endl;
-
     //std::vector<std::vector<int>> adj_matrix(m, std::vector<int>(m, 0));
     //readAdjacencyMatrix(adj_matrix, n, m);
     //printAdjacencyMatrix(adj_matrix, n, m);
@@ -69,21 +64,11 @@ int main() {
     //std::vector<std::vector<int>> adj_list(4, std::vector<int>());
     //createAdjList(adj_list, 4);
     //printAdjList(adj_list);
-    std::vector<std::vector<int>> adj_list_graph_with_cycle = {
-        {1},          // 0 -> 1
-        {0, 2, 3},    // 1 -> 0, 2, 3
-        {1, 3},       // 2 -> 1, 3
-        {1, 2}        // 3 -> 1, 2
-    };
-    std::vector<std::vector<int>> adj_graph_without_cycle = {
-        {1},       // 0 -> 1
-        {0, 2},    // 1 -> 0, 2
-        {1, 3},    // 2 -> 1, 3
-        {2}        // 3 -> 2
-    };
-    cout << bfs_traverse_a_graph(adj_list_graph_with_cycle, 0) << '\n';
-    vector<int> order = bfs(adj_list_graph_with_cycle, 0);
-    printVector(order);
+
+
+    //cout << bfs_traverse_a_graph(adj_list_graph_with_cycle, 0) << '\n';
+    //vector<int> order = bfs(adj_list_graph_with_cycle, 0);
+    //printVector(order);
     //int n = 6;
     //auto adj_list = randomTree(n);
     //printAdjacencyList(adj_list_graph_with_cycle);
@@ -98,5 +83,30 @@ int main() {
     //cout << "Sorted: ";
     //printArray(arr, stack_array_size);
     //cout << binarySearch(arr, 4, 0, stack_array_size - 1) << endl;
+}
+
+// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+int main() {
+    vector<int> coins = {1, 2, 5, 10};
+    vector<int> coin_values = {60, 100, 120};
+    vector<int> coin_weights = {30, 20, 30};
+
+    std::vector<std::vector<int>> adj_list_graph_with_cycle = {
+        {1},          // 0 -> 1
+        {0, 2, 3},    // 1 -> 0, 2, 3
+        {1, 3},       // 2 -> 1, 3
+        {1, 2}        // 3 -> 1, 2
+    };
+    std::vector<std::vector<int>> adj_graph_without_cycle = {
+        {1},       // 0 -> 1
+        {0, 2},    // 1 -> 0, 2
+        {1, 3},    // 2 -> 1, 3
+        {2}        // 3 -> 2
+    };
+    std::vector<std::tuple<int, int, int>> djikstra_directed_graph = {
+        {0, 1, 7}, {1, 4, 3}, {1, 2, 6}, {1, 3, 20}, {2, 3, 14}, {3, 4, 2}
+    };
+    demoBFS();
+    runDijkstra(djikstra_directed_graph, true);
     return 0;
 }
