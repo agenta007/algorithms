@@ -67,4 +67,20 @@ inline std::vector<std::vector<int>> randomTree(int n) {
     return adj;
 }
 
+template <typename T>
+void printVectorOfVectors(const std::vector<std::vector<T>>& grid) {
+    for (const auto& row : grid) {
+        for (const auto& val : row)
+            std::cout << val << " ";
+        std::cout << "\n";
+    }
+}
+void printCoordinateSystem(int n) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++)
+            cout << "(" << i << "," << j << ") ";
+        cout << "\n";
+    }
+}
+
 #endif //HELPERS_H

@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "helpers.h"
 #include "sorting/selection_sort.h"
 #include "search/binary_search.h"
@@ -9,6 +8,7 @@
 #include "search/binary_search.h"
 #include "search/binary_search_recursively.h"
 #include "sorting/bucket_sort.h"
+#include "sorting/merge_two_sorted_arrays.h"
 #include "greedy/minimum_number_of_coins.h"
 #include "greedy/fractional_knapsack.h"
 #include "greedy/min_cost.h"
@@ -34,12 +34,15 @@
 #include "graph/simple_adjacency_list_implementation.h"
 #include "graph/read_adjacency_matrix.h"
 #include "graph/bfs.h"
+#include "graph/topological_sort.h"
 #include "graph/shortest_path_unweighted.h"
 #include "graph/dfs.h"
 #include "graph/dijkstra.h"
 #include "graph/prim.h"
 #include "graph/undirected_cycle_detector.h"
 #include "graph/bfs_2.h"
+#include "graph/distance_of_nearest_1_in_binary_grid.h"
+#include "graph/steps_knight.h"
 using namespace std;
 #define stack_array_size 100
 
@@ -106,7 +109,11 @@ int main() {
     std::vector<std::tuple<int, int, int>> djikstra_directed_graph = {
         {0, 1, 7}, {1, 4, 3}, {1, 2, 6}, {1, 3, 20}, {2, 3, 14}, {3, 4, 2}
     };
-    demoBFS();
-    runDijkstra(djikstra_directed_graph, true);
+
+
+    demoStepsByKnight();
+    //demoBFS();
+    //runDijkstra(djikstra_directed_graph, true);
+    //demoTopologicalSort();
     return 0;
 }

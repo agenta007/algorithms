@@ -47,9 +47,15 @@ set(HEADERS
         dp/longest_palindromic_subsequence.h
         dp/max_subarray.h
         dp/word_break.h
+        graph/topological_sort.h
         graph/undirected_cycle_detector.h
         graph/knight_steps.h
         graph/printPathVertices.h
+        sorting/merge_two_sorted_arrays.h
+        graph/find_shortest_path_between_cities.h
+        graph/find_shortes_path_between_nodes.h
+        graph/distance_of_nearest_1_in_binary_grid.h
+        graph/steps_knight.h
 )
 
 # Remove the problematic file from the list
