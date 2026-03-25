@@ -1,20 +1,29 @@
 //
 // Created by neo on 3/24/26.
 //
+#include <ranges>
 #include <vector>
 #include <string>
+#include <queue>
 using namespace std;
 #ifndef ALGORITHMS_FIND_SHORTEST_PATH_BETWEEN_CITIES_H
 #define ALGORITHMS_FIND_SHORTEST_PATH_BETWEEN_CITIES_H
 
-vector<int> find_shortest_path_between_cities(vector<tuple<string, string, double>>> &adj_list, string src_city){
-    vector<int> distances;
+using CityRoad = std::pair<string, string>;
+const int INFINITY_DISTANCE = std::numeric_limits<int>::max();
+vector<int> find_shortest_path_between_cities(vector<tuple<string, string, double>> &adj_list, string src_city){
+    int num_vertices = adj_list.size();
+    vector<int> shortest_distances(num_vertices, INFINITY_DISTANCE);
+    priority_queue<HeapEntry, std::vector<HeapEntry>, std::greater<HeapEntry>> min_heap;
     distances[src_city] = 0;
-    //for (string city_name  )
+    for (tuple<string, string, double> city : adj_list ) {
+        
+    }
+    
     return distances;
 }
 void demoFindShortestPathBetweenCities() {
-        std::vector<std::tuple<string, string, double>> paths_between_major_cities_in_bulgaria = {
+    std::vector<std::tuple<string, string, double>> paths_between_major_cities_in_bulgaria = {
     // София — connections
     {"София", "Пловдив", 146},
     {"София", "Благоевград", 101},
@@ -232,5 +241,11 @@ void demoFindShortestPathBetweenCities() {
     // Казанлък — connections
     {"Казанлък", "Шипка", 12},
 };
+    std::vector<std::vector<CityRoad>> adjacency_list(num_vertices);
+    for (const auto& [from, to, weight] : adjacency_list) {
+        adjacency_list[from].push_back({to, weight});
+        adjacency_list[to].push_back({from, weight});
+    }
+   find_shortest_path_between_cities(adjacency_list, "София");
 }
 #endif //ALGORITHMS_FIND_SHORTEST_PATH_BETWEEN_CITIES_H
