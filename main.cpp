@@ -106,14 +106,12 @@ int main() {
         {1, 3},    // 2 -> 1, 3
         {2}        // 3 -> 2
     };
-    std::vector<std::tuple<int, int, int>> djikstra_directed_graph = {
-        {0, 1, 7}, {1, 4, 3}, {1, 2, 6}, {1, 3, 20}, {2, 3, 14}, {3, 4, 2}
-    };
 
 
-    demoStepsByKnight();
+
+    //demoStepsByKnight();
     //demoBFS();
-    //runDijkstra(djikstra_directed_graph, true);
+    runDijkstra();
     //demoTopologicalSort();
     return 0;
 }
