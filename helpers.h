@@ -5,6 +5,7 @@
 #include <ctime>
 #include <iostream>
 #include <bits/ostream.tcc>
+#include <map>
 using namespace std;
 
 template <typename T>
@@ -81,6 +82,11 @@ void printCoordinateSystem(int n) {
             cout << "(" << i << "," << j << ") ";
         cout << "\n";
     }
+}
+
+void print_djikstra_shortest_distances(const std::map<std::string, int>& shortest_distances) {
+    for (const auto& [vertex, dist] : shortest_distances)
+        std::cout << vertex << ": " << (dist == std::numeric_limits<int>::max() ? "INF" : std::to_string(dist)) << "\n";
 }
 
 #endif //HELPERS_H

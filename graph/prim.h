@@ -13,6 +13,7 @@
 // Prim's MST from source s
 // adj[u] = list of {v, weight}
 // Returns total MST weight and parent[] array
+//undirected, connected, weighted graph
 std::pair<int, std::vector<int>> prim(const std::vector<std::vector<std::pair<int,int>>>& adj, int s) {
     int n = adj.size();
     const int INF = std::numeric_limits<int>::max();
