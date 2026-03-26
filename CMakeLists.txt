@@ -7,4 +7,5 @@ add_executable(algorithms
         main.cpp
         rod_cutting.cpp
         graph/knight_steps.cpp
+        exam/supertriangle.h
 )

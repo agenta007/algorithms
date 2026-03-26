@@ -28,6 +28,7 @@
 #include "dp/longest_palindromic_subsequence.h"
 #include "dp/max_subarray.h"
 #include "dp/word_break.h"
+#include "exam/supertriangle.h"
 #include "graph/read_adjacency_list.h"
 #include "graph/simple_adjacency_list_implementation.h"
 #include "graph/adjacency_list.h"
@@ -108,10 +109,11 @@ int main() {
     };
 
 
-
+    //demoPrim();
+    SuperTriange();
     //demoStepsByKnight();
     //demoBFS();
-    runDijkstra();
+    //runDijkstra();
     //demoTopologicalSort();
     return 0;
 }
