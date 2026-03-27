@@ -110,7 +110,7 @@ int main() {
 
 
     //demoPrim();
-    SuperTriange();
+    SuperTriangle();
     //demoStepsByKnight();
     //demoBFS();
     //runDijkstra();

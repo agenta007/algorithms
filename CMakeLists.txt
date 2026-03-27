@@ -8,4 +8,7 @@ add_executable(algorithms
         rod_cutting.cpp
         graph/knight_steps.cpp
         exam/supertriangle.h
+        greedy/trapping_rain_water.h
+        sorting/intervals_sort.h
+        euclid_gcd.h
 )
