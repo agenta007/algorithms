@@ -44,8 +44,19 @@
 #include "graph/bfs_2.h"
 #include "graph/distance_of_nearest_1_in_binary_grid.h"
 #include "graph/steps_knight.h"
+#include "greedy/trapping_rain_water.h"
+#include "transpose_a_matrix.h"
+#include "algoexpert/two_number_sum.h"
+#include "greedy/task_bind.h"
+#include "greedy/obsht_broi_nenamalqvashti_chisla.h"
+
+
+
 using namespace std;
 #define stack_array_size 100
+//#define x (*((volatile unsigned int *) 0x20004000)) x = 0x8A;
+#define x *((volatile unsigned int *) 0x20004000);
+
 
 void demoSearchAlgorithms() {
     //demoBinarySearch();
@@ -110,7 +121,12 @@ int main() {
 
 
     //demoPrim();
-    SuperTriangle();
+    //SuperTriangle();
+    //demoTrappingRainWater();
+    //demoTwoNumberSum();
+    //demoTaskBind();
+    demoObshtBroiNenamalqvashtiChisla();
+    //demoTransposeAmatrix();
     //demoStepsByKnight();
     //demoBFS();
     //runDijkstra();

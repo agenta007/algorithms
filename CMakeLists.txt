@@ -11,4 +11,9 @@ add_executable(algorithms
         greedy/trapping_rain_water.h
         sorting/intervals_sort.h
         euclid_gcd.h
+        transpose_a_matrix.h
+        greedy/task_bind.h
+        algoexpert/two_number_sum.h
+        greedy/obsht_broi_nenamalqvashti_chisla.h
+        graph/dfs_check_if_graph_is_bipartite.h
 )
