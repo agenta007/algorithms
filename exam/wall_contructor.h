@@ -51,6 +51,7 @@ struct DistResult {
     std::vector<long long> min_length;
 };
 
+//takes bricks and returns distance arrays
 DistResult create_dist_arrays(const std::vector<Brick>& bricks) {
     if (bricks.empty()) return {0, 0, {}, {}};
 
@@ -58,7 +59,12 @@ DistResult create_dist_arrays(const std::vector<Brick>& bricks) {
     int D_opt = bricks[0].length;
     int C_opt = bricks[0].price;
 
+    // min_cost[r] съхранява минималната цена, необходима за построяване на
+    // дължина L, такава че L % D_opt == r. Тук D_opt е дължината на най-ефективната тухла.
     std::vector<long long> min_cost(D_opt, INF);
+    // min_length[r] съхранява най-малката възможна обща дължина, с която се
+    // постига остатък 'r'. Това е критично, за да сме сигурни, че търсената от нас
+    // дължина L не е по-малка от минимално необходимата за този остатък (L >= min_length[r]).
     std::vector<long long> min_length(D_opt, INF);
 
     std::priority_queue<State, std::vector<State>, std::greater<State>> pq;

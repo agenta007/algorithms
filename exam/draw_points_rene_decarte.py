@@ -1,86 +1,46 @@
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 
-def draw_cartesian_space(points, title="Points in Cartesian Space"):
-    """
-    Draws a list of (x, y) points in a Cartesian coordinate system.
-    """
-    # Extract X and Y coordinates into separate lists
+def draw_cartesian_space(points, title="Points in Cartesian Space", filename="output.png"):
     x_coords = [point[0] for point in points]
     y_coords = [point[1] for point in points]
 
-    # Create the figure and axis
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(10, 10))
 
-    # Set the actual window title
-    fig.canvas.manager.set_window_title(title)
+    # Чертане на контурите (линиите)
+    ax.plot(x_coords, y_coords, color='blue', linewidth=2, zorder=2, label="Контур")
+    # Чертане на самите точки
+    ax.scatter(x_coords, y_coords, color='red', s=50, zorder=3, label="Върхове")
 
-    # Scatter plot for the points
-    ax.scatter(x_coords, y_coords, color='red', s=50, zorder=3, label="Given Points")
-
-    # Annotate each point with its coordinates
+    # Анотации с координати
     for (x, y) in points:
-        ax.annotate(f'({x}, {y})', (x, y), textcoords="offset points", xytext=(8, 8), ha='center')
+        ax.annotate(f'({x}, {y})', (x, y), textcoords="offset points", xytext=(0, 10), ha='center', fontsize=8)
 
-    # --- Setup the Cartesian (Descartes) Space ---
-
-    # Move the left and bottom spines (axes) to the center (0,0)
+    # Настройка на координатната система
     ax.spines['left'].set_position('zero')
     ax.spines['bottom'].set_position('zero')
-
-    # Hide the top and right spines
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
 
-    # Ensure ticks are placed correctly
-    ax.xaxis.set_ticks_position('bottom')
-    ax.yaxis.set_ticks_position('left')
+    # ВАЖНО: Настройка на мрежата през 1 единица
+    ax.xaxis.set_major_locator(MultipleLocator(1))
+    ax.yaxis.set_major_locator(MultipleLocator(1))
+    ax.grid(True, which='both', linestyle='--', alpha=0.5, zorder=0)
 
-    # Add a grid for better readability
-    ax.grid(True, linestyle='--', alpha=0.6, zorder=0)
+    # Граници на графиката (малко по-широки от точките за видимост)
+    ax.set_xlim(-1, 11)
+    ax.set_ylim(-1, 11)
 
-    # Set dynamic limits based on the points to ensure everything is visible
-    max_val = max(max(abs(x) for x in x_coords), max(abs(y) for y in y_coords)) + 2
-
-    # Using -2 instead of -max_val for the lower bounds so the all-positive
-    # coordinates from your task are zoomed in properly while keeping the axes visible.
-    ax.set_xlim(-2, max_val)
-    ax.set_ylim(-2, max_val)
-
-    # Make the X and Y axes have the same scale
     ax.set_aspect('equal')
-
-    # Add a title to the graph itself
     plt.title(title, pad=20)
+    plt.legend()
+    plt.savefig(filename)
+    plt.close()
 
-    # Note: plt.show() has been removed from here!
+def main():
+    # Точки от вашия пример
+    day1_points = [(0, 0), (4, 0), (4, 6), (6, 6), (6, 0), (10, 0)]
+    day2_points = [(0, 10), (4, 10), (4, 6), (6, 6), (6, 10), (10, 10)]
 
-# --- Example Usage ---
-if __name__ == "__main__":
-    # First set of points (Day 1 Silhouette)
-    N_points = [
-        (0, 0),
-        (4, 0),
-        (4, 6),
-        (6, 6),
-        (6, 0),
-        (10, 0),
-    ]
-
-    # Second set of points (Day 2 Silhouette)
-    N_points_2 = [
-        (0, 10),
-        (4, 10),
-        (4, 6),
-        (6, 6),
-        (6, 10),
-        (10, 10)
-    ]
-
-    # Generate the first window
-    draw_cartesian_space(N_points, title="Silhouette - Day 1")
-
-    # Generate the second window
-    draw_cartesian_space(N_points_2, title="Silhouette - Day 2")
-
-    # Show both windows simultaneously
-    plt.show()
+    draw_cartesian_space(day1_points, title="Силует - Ден 1 (Мрежа 1x1)", filename="day1_contour.png")
+    draw_cartesian_space(day2_points, title="Силует - Ден 2 (Мрежа 1x1)", filename="day2_contour.png")

@@ -34,6 +34,8 @@ int sum_ints_in_a_pile(const deque<int> &column, int start, int end) {
     }
     return sum;
 }
+
+
 vector<int> generate_smallest_lexicograph_order_simpler_version(vector<deque<int>> &numbers_carton_piles) {
     vector<int> smallest_lexicograph_order;
     int piles = numbers_carton_piles.size();
