@@ -49,7 +49,7 @@
 #include "algoexpert/two_number_sum.h"
 #include "greedy/task_bind.h"
 #include "greedy/obsht_broi_nenamalqvashti_chisla.h"
-
+#include "exam/asen_boris_i_kartonchetata.h"
 
 
 using namespace std;
@@ -122,10 +122,12 @@ int main() {
 
     //demoPrim();
     //SuperTriangle();
+    demoAsenBorisIKartonchetata();
+    //test1SuperTriangle();
     //demoTrappingRainWater();
     //demoTwoNumberSum();
     //demoTaskBind();
-    demoObshtBroiNenamalqvashtiChisla();
+    //demoObshtBroiNenamalqvashtiChisla();
     //demoTransposeAmatrix();
     //demoStepsByKnight();
     //demoBFS();

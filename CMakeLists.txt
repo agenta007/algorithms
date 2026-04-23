@@ -16,4 +16,7 @@ add_executable(algorithms
         algoexpert/two_number_sum.h
         greedy/obsht_broi_nenamalqvashti_chisla.h
         graph/dfs_check_if_graph_is_bipartite.h
+        graph/dfs_traverse_a_char_tree.h
+        exam/asen_boris_i_kartonchetata.h
+        exam/start_template.h
 )
