@@ -50,7 +50,7 @@
 #include "greedy/task_bind.h"
 #include "greedy/obsht_broi_nenamalqvashti_chisla.h"
 #include "exam/asen_boris_i_kartonchetata.h"
-
+#include "exam/wall_contructor.h"
 
 using namespace std;
 #define stack_array_size 100
@@ -122,7 +122,8 @@ int main() {
 
     //demoPrim();
     //SuperTriangle();
-    demoAsenBorisIKartonchetata();
+    //demoAsenBorisIKartonchetata();
+    demoWallConstructor();
     //test1SuperTriangle();
     //demoTrappingRainWater();
     //demoTwoNumberSum();

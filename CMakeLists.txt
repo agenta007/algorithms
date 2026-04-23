@@ -19,4 +19,5 @@ add_executable(algorithms
         graph/dfs_traverse_a_char_tree.h
         exam/asen_boris_i_kartonchetata.h
         exam/start_template.h
+        exam/wall_contructor.h
 )
